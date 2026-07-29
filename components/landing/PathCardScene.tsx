@@ -84,7 +84,9 @@ export function PathCardScene({ variant }: PathCardSceneProps) {
         [2.05, [-0.55, 0.55]],
       ] as const;
       const positions: THREE.Vector3[][] = layers.map(([x, ys]) =>
-        ys.map((y, index) => new THREE.Vector3(x, y, Math.sin(index + x) * 0.28)),
+        ys.map(
+          (y, index) => new THREE.Vector3(x, y, Math.sin(index + x) * 0.28),
+        ),
       );
 
       const nodeGeometry = new THREE.SphereGeometry(0.06, 18, 18);
@@ -110,8 +112,14 @@ export function PathCardScene({ variant }: PathCardSceneProps) {
         const nextLayer = positions[layerIndex + 1];
         layer.forEach((from, fromIndex) => {
           nextLayer.forEach((to, toIndex) => {
-            if ((fromIndex + toIndex + layerIndex) % 2 === 0 || Math.abs(from.y - to.y) < 0.72) {
-              const geometry = new THREE.BufferGeometry().setFromPoints([from, to]);
+            if (
+              (fromIndex + toIndex + layerIndex) % 2 === 0 ||
+              Math.abs(from.y - to.y) < 0.72
+            ) {
+              const geometry = new THREE.BufferGeometry().setFromPoints([
+                from,
+                to,
+              ]);
               const material = new THREE.LineBasicMaterial({
                 color: layerIndex === 1 ? 0x78a4ff : 0x4de6e9,
                 transparent: true,
@@ -161,7 +169,10 @@ export function PathCardScene({ variant }: PathCardSceneProps) {
       ] as const;
 
       symbols.forEach((symbol, index) => {
-        const sprite = makeTextSprite(symbol, index % 3 === 0 ? "#d7c2ff" : "#7eeaf0");
+        const sprite = makeTextSprite(
+          symbol,
+          index % 3 === 0 ? "#d7c2ff" : "#7eeaf0",
+        );
         if (!sprite) return;
         const [x, y, z, scale] = placements[index];
         const visualScale = 0.32 + (clamp(scale, 1, 10) / 10) * 0.92;
@@ -197,7 +208,9 @@ export function PathCardScene({ variant }: PathCardSceneProps) {
     let raf = 0;
     const animate = (time: number) => {
       const t = reducedMotion.matches ? 0.2 : time * 0.001;
-      root.rotation.y += reducedMotion.matches ? 0 : Math.sin(t * 0.25) * 0.0009;
+      root.rotation.y += reducedMotion.matches
+        ? 0
+        : Math.sin(t * 0.25) * 0.0009;
 
       if (variant === "ai") {
         nodes.forEach((node) => {
@@ -210,12 +223,14 @@ export function PathCardScene({ variant }: PathCardSceneProps) {
         pulses.forEach((pulse) => {
           const line = pulse.userData.line as THREE.Line;
           const phase = pulse.userData.phase as number;
-          const pos = line.geometry.attributes.position as THREE.BufferAttribute;
+          const pos = line.geometry.attributes
+            .position as THREE.BufferAttribute;
           const a = new THREE.Vector3(pos.getX(0), pos.getY(0), pos.getZ(0));
           const b = new THREE.Vector3(pos.getX(1), pos.getY(1), pos.getZ(1));
           const mix = (t * 0.28 + phase) % 1;
           pulse.position.copy(a.lerp(b, mix));
-          (pulse.material as THREE.MeshBasicMaterial).opacity = 0.25 + Math.sin(mix * Math.PI) * 0.65;
+          (pulse.material as THREE.MeshBasicMaterial).opacity =
+            0.25 + Math.sin(mix * Math.PI) * 0.65;
         });
       } else {
         sprites.forEach((sprite) => {
@@ -225,7 +240,8 @@ export function PathCardScene({ variant }: PathCardSceneProps) {
           const radiusY = sprite.userData.radiusY as number;
           sprite.position.x = base.x + Math.sin(t * 0.22 + phase) * radiusX;
           sprite.position.y = base.y + Math.cos(t * 0.18 + phase) * radiusY;
-          sprite.material.opacity = (phase < 0.8 ? 0.6 : 0.48) + Math.sin(t * 0.16 + phase) * 0.035;
+          sprite.material.opacity =
+            (phase < 0.8 ? 0.6 : 0.48) + Math.sin(t * 0.16 + phase) * 0.035;
         });
       }
 
@@ -238,7 +254,11 @@ export function PathCardScene({ variant }: PathCardSceneProps) {
       cancelAnimationFrame(raf);
       resizeObserver.disconnect();
       root.traverse((object) => {
-        if (object instanceof THREE.Mesh || object instanceof THREE.Line || object instanceof THREE.Sprite) {
+        if (
+          object instanceof THREE.Mesh ||
+          object instanceof THREE.Line ||
+          object instanceof THREE.Sprite
+        ) {
           const geometry = "geometry" in object ? object.geometry : undefined;
           if (geometry) geometry.dispose();
           const material = object.material;
@@ -257,5 +277,11 @@ export function PathCardScene({ variant }: PathCardSceneProps) {
     };
   }, [variant]);
 
-  return <div className={`path-card-scene path-card-scene--${variant}`} ref={hostRef} aria-hidden="true" />;
+  return (
+    <div
+      className={`path-card-scene path-card-scene--${variant}`}
+      ref={hostRef}
+      aria-hidden="true"
+    />
+  );
 }

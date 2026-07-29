@@ -48,17 +48,25 @@ export function Hero() {
             animate={reveal.visible}
             transition={{ ...transition, delay: 0.34 }}
           >
-            با چند تست کوتاه، نقطه شروع تو مشخص می‌شود و مسیر یادگیری متناسب
-            با هدفت را انتخاب می‌کنی.
+            با چند تست کوتاه، نقطه شروع تو مشخص می‌شود و مسیر یادگیری متناسب با
+            هدفت را انتخاب می‌کنی.
           </motion.p>
 
           <motion.div
             className="hero-actions"
-            initial={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 14, filter: "blur(7px)" }}
+            initial={
+              reducedMotion
+                ? { opacity: 0 }
+                : { opacity: 0, y: 14, filter: "blur(7px)" }
+            }
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ ...transition, delay: 0.48 }}
           >
-            <a className="hero-primary-cta focus-ring" href="#learning-paths" onClick={scrollToLearningPaths}>
+            <a
+              className="hero-primary-cta focus-ring"
+              href="#learning-paths"
+              onClick={scrollToLearningPaths}
+            >
               همین حالا رایگان شروع کن
             </a>
           </motion.div>

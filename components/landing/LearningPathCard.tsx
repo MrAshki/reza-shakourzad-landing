@@ -2,7 +2,6 @@
 
 import { ArrowLeft } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
-import type { ReactNode } from "react";
 import { easeOut } from "./animation";
 import { PathCardScene } from "./PathCardScene";
 
@@ -13,7 +12,6 @@ type LearningPathCardProps = {
   href: string;
   cta: string;
   variant: "ai" | "math";
-  pattern: ReactNode;
 };
 
 export function LearningPathCard({
@@ -23,7 +21,6 @@ export function LearningPathCard({
   href,
   cta,
   variant,
-  pattern,
 }: LearningPathCardProps) {
   const reducedMotion = useReducedMotion();
 
@@ -38,9 +35,6 @@ export function LearningPathCard({
         ease: easeOut,
       }}
     >
-      <div className="path-pattern" aria-hidden="true">
-        {pattern}
-      </div>
       <PathCardScene variant={variant} />
       <div className="path-card-content">
         {variant === "ai" ? (

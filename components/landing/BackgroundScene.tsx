@@ -91,14 +91,15 @@ export default function BackgroundScene() {
         const dx = (x - cx) / SCENE_TUNING.moundSpread.x;
         const dz = (z - cz) / SCENE_TUNING.moundSpread.z;
         const mound = Math.exp(-(dx * dx + dz * dz) * 1.08);
-        const secondary = Math.exp(-(((x + 0.7) / 6.5) ** 2 + ((z + 1.0) / 3.8) ** 2));
+        const secondary = Math.exp(
+          -(((x + 0.7) / 6.5) ** 2 + ((z + 1.0) / 3.8) ** 2),
+        );
         const height =
           mound * SCENE_TUNING.moundHeight +
           secondary * SCENE_TUNING.secondaryHeight -
           v * 0.28;
         const wave =
-          Math.sin(u * Math.PI * 5.2 + v * 3.1) *
-          SCENE_TUNING.waveStrength;
+          Math.sin(u * Math.PI * 5.2 + v * 3.1) * SCENE_TUNING.waveStrength;
         const i = ptr * 3;
         base[i] = x;
         base[i + 1] = height + wave;
@@ -172,8 +173,14 @@ export default function BackgroundScene() {
       sparkColors[p + 1] = sc.g;
       sparkColors[p + 2] = sc.b;
     }
-    sparksGeometry.setAttribute("position", new THREE.BufferAttribute(sparks, 3));
-    sparksGeometry.setAttribute("color", new THREE.BufferAttribute(sparkColors, 3));
+    sparksGeometry.setAttribute(
+      "position",
+      new THREE.BufferAttribute(sparks, 3),
+    );
+    sparksGeometry.setAttribute(
+      "color",
+      new THREE.BufferAttribute(sparkColors, 3),
+    );
     const sparksMesh = new THREE.Points(
       sparksGeometry,
       new THREE.PointsMaterial({
@@ -192,7 +199,8 @@ export default function BackgroundScene() {
       mouse.tx = (clientX / window.innerWidth - 0.5) * 2;
       mouse.ty = -(clientY / window.innerHeight - 0.5) * 2;
     };
-    const onPointerMove = (event: PointerEvent) => setPointer(event.clientX, event.clientY);
+    const onPointerMove = (event: PointerEvent) =>
+      setPointer(event.clientX, event.clientY);
     const onTouchMove = (event: TouchEvent) => {
       const touch = event.touches[0];
       if (touch) setPointer(touch.clientX, touch.clientY);
@@ -202,11 +210,26 @@ export default function BackgroundScene() {
       const y = window.scrollY;
       const fade = clamp(y / 360, 0, 1);
       const blur = clamp((y - 90) / 420, 0, 1);
-      document.documentElement.style.setProperty("--hero-copy-opacity", `${1 - fade}`);
-      document.documentElement.style.setProperty("--hero-copy-y", `${-fade * 28}px`);
-      document.documentElement.style.setProperty("--scene-blur", `${blur * 8}px`);
-      document.documentElement.style.setProperty("--scene-saturate", `${1 - blur * 0.18}`);
-      document.documentElement.style.setProperty("--scene-opacity", `${1 - blur * 0.08}`);
+      document.documentElement.style.setProperty(
+        "--hero-copy-opacity",
+        `${1 - fade}`,
+      );
+      document.documentElement.style.setProperty(
+        "--hero-copy-y",
+        `${-fade * 28}px`,
+      );
+      document.documentElement.style.setProperty(
+        "--scene-blur",
+        `${blur * 8}px`,
+      );
+      document.documentElement.style.setProperty(
+        "--scene-saturate",
+        `${1 - blur * 0.18}`,
+      );
+      document.documentElement.style.setProperty(
+        "--scene-opacity",
+        `${1 - blur * 0.08}`,
+      );
     };
 
     let width = 1;
@@ -242,7 +265,13 @@ export default function BackgroundScene() {
           const x = base[p];
           const z = base[p + 2];
           const breath = Math.sin(t * 0.55 + phases[i]) * 0.045;
-          const mouseLift = Math.exp(-(((x / 7.9 - mouse.x * 0.42) ** 2) + ((z / 3.6 - mouse.y * 0.34) ** 2)) * 4.3) * 0.22;
+          const mouseLift =
+            Math.exp(
+              -(
+                (x / 7.9 - mouse.x * 0.42) ** 2 +
+                (z / 3.6 - mouse.y * 0.34) ** 2
+              ) * 4.3,
+            ) * 0.22;
           arr[p + 1] = base[p + 1] + breath + mouseLift;
         }
         pos.needsUpdate = true;

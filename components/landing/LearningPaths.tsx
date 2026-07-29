@@ -5,27 +5,6 @@ import { easeOut } from "./animation";
 import { LearningPathCard } from "./LearningPathCard";
 import { ProcessIndicator } from "./ProcessIndicator";
 
-function AiPattern() {
-  return (
-    <div className="ai-network">
-      {Array.from({ length: 9 }, (_, index) => (
-        <span key={index} />
-      ))}
-    </div>
-  );
-}
-
-function MathPattern() {
-  return (
-    <div className="math-field">
-      <span />
-      <span />
-      <span />
-      <i />
-    </div>
-  );
-}
-
 export function LearningPaths() {
   const reducedMotion = useReducedMotion();
 
@@ -56,7 +35,6 @@ export function LearningPaths() {
             href="/assessment?path=ai"
             cta="شروع مسیر"
             variant="ai"
-            pattern={<AiPattern />}
           />
           <LearningPathCard
             index={1}
@@ -65,7 +43,6 @@ export function LearningPaths() {
             href="/assessment?path=math"
             cta="شروع مسیر"
             variant="math"
-            pattern={<MathPattern />}
           />
         </div>
 
