@@ -241,10 +241,3 @@ Recommended next steps:
 
 ---
 
-## Short message for review
-
-You can share the repository with this message:
-
-> Hello Professor, I prepared the first version of the Persian landing page for your educational website. It is a React/TypeScript/Vinext project with a dark RTL design, interactive Three.js visuals, AI and Mathematics learning path cards, and a clear CTA flow. The current version is only the landing page; backend, assessment logic, authentication, database, and dashboard can be developed in the next phase. The README includes the technical stack, deployment notes, performance details, and device requirements.
->
-> Repository: https://github.com/MrAshki/reza-shakourzad-landing
