@@ -228,29 +228,29 @@ Cloudflare is also a good option because the project already includes Cloudflare
 
 ## Running the project
 
-Install dependencies:
+If someone clones the project and only wants to review it locally, these two commands are enough:
 
 ```bash
 npm install
-```
-
-Start development server:
-
-```bash
 npm run dev
 ```
 
-Create a production build:
+`npm run dev` starts the local development server. This is the command used for quick local review.
+
+For a production-style server, build first and then start:
 
 ```bash
+npm install
 npm run build
-```
-
-Start the production server using the project script:
-
-```bash
 npm run start
 ```
+
+So the short version is:
+
+- **Local review:** `npm install` → `npm run dev`
+- **Production run:** `npm install` → `npm run build` → `npm run start`
+
+The extra quality commands below are not required just to open the project. They are only for checking the code before delivery or deployment.
 
 ---
 
