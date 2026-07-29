@@ -228,9 +228,18 @@ Cloudflare is also a good option because the project already includes Cloudflare
 
 ## Running the project
 
-If someone clones the project and only wants to review it locally, these two commands are enough:
+First, open a terminal inside the project folder. `npm` commands must be run from the directory that contains `package.json`.
 
-```bash
+For example, after cloning:
+
+```powershell
+git clone https://github.com/MrAshki/reza-shakourzad-landing.git
+cd ./reza-shakourzad-landing
+```
+
+If someone only wants to review it locally, these two commands are enough:
+
+```powershell
 npm install
 npm run dev
 ```
@@ -239,7 +248,7 @@ npm run dev
 
 For a production-style server, build first and then start:
 
-```bash
+```powershell
 npm install
 npm run build
 npm run start
