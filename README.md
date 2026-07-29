@@ -31,7 +31,7 @@ Current repository state:
 
 ```text
 Branch: master
-Latest README update: 3f0e700
+Latest README update: see the latest commit on `master`
 Previous stable cleanup commit: 879948d
 ```
 
@@ -128,6 +128,50 @@ three.module: about 516 KB
 That is expected because the landing page uses WebGL visuals. The build currently shows a non-blocking warning that one client chunk is larger than 500 KB. The project still builds successfully and all tests pass.
 
 If performance becomes a priority in the next phase, the best improvement would be to lazy-load the Three.js sections and reduce animation complexity on weaker mobile devices.
+
+---
+
+## SEO and GEO status
+
+The current version has a basic foundation for discoverability, but it is not yet a complete SEO/GEO package.
+
+Right now, the page has a clear title, Persian RTL content, semantic sections, readable headings, accessible CTA links, and server-rendered HTML smoke tests. This is enough for an initial landing page review, but not enough for a serious public launch or long-term search growth.
+
+Current SEO/GEO status:
+
+- Basic page title exists.
+- Main Persian landing content is rendered in the page.
+- The layout uses semantic sections and headings.
+- The project does not yet include a full metadata strategy.
+- There is no final production domain configured in the repo.
+- There is no sitemap or robots configuration yet.
+- There is no structured data / schema markup yet.
+- There is no analytics or search console setup yet.
+- There is no GEO-specific content strategy yet.
+
+For the next phase, SEO work should focus on classic search visibility:
+
+1. Finalize the production domain and canonical URL.
+2. Add complete metadata: title, description, Open Graph, Twitter/X card, and canonical tags.
+3. Add `robots.txt` and `sitemap.xml`.
+4. Add structured data with JSON-LD, such as `Person`, `Organization`, `WebSite`, and educational content schema where appropriate.
+5. Improve landing copy around the real search intent: Persian AI education, mathematics learning, applied math, and learning paths.
+6. Add real pages for AI, Mathematics, assessment, about, resources, and contact so the site has indexable depth.
+7. Connect Google Search Console and analytics after deployment.
+
+GEO here means **Generative Engine Optimization**: making the site easier for AI search engines and answer engines to understand, cite, and summarize correctly.
+
+For the next phase, GEO work should include:
+
+1. Clear explanations of who Reza Shakourzad is and what the educational platform offers.
+2. Dedicated, well-structured pages for each learning path.
+3. FAQ sections written in natural question-and-answer format.
+4. Concise summaries at the top of important pages.
+5. Structured data that describes the person, brand, website, and educational offering.
+6. Consistent terminology across the website so AI systems do not misinterpret the project.
+7. Content that answers specific user questions, not only marketing copy.
+
+In short: the project is ready as a visual landing page, but SEO/GEO should be treated as a dedicated content and technical optimization phase before public launch.
 
 ---
 
