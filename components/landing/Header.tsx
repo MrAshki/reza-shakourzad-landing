@@ -13,14 +13,19 @@ const navigation = [
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 24);
+    const onScroll = () => {
+      const y = window.scrollY;
+      setIsScrolled(y > 24);
+      setIsHidden(y > 120 && !isOpen);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isOpen]);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -34,7 +39,7 @@ export function Header() {
 
   return (
     <header
-      className={`site-header ${isScrolled ? "site-header--scrolled" : ""}`}
+      className={`site-header ${isScrolled ? "site-header--scrolled" : ""} ${isHidden ? "site-header--hidden" : ""}`}
     >
       <a className="skip-link" href="#main-content">
         پرش به محتوای اصلی

@@ -1,10 +1,10 @@
 "use client";
 
-import { EntropyField } from "@/components/ui/EntropyField";
 import { ArrowLeft } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import type { ReactNode } from "react";
 import { easeOut } from "./animation";
+import { PathCardScene } from "./PathCardScene";
 
 type LearningPathCardProps = {
   index: number;
@@ -41,24 +41,28 @@ export function LearningPathCard({
       <div className="path-pattern" aria-hidden="true">
         {pattern}
       </div>
-      <EntropyField variant={variant} />
+      <PathCardScene variant={variant} />
       <div className="path-card-content">
-        <div className="path-emblem" aria-hidden="true">
-          <span className="path-emblem-ring" />
-          {variant === "ai" ? (
+        {variant === "ai" ? (
+          <div className="path-emblem" aria-hidden="true">
+            <span className="path-emblem-ring" />
             <span className="ai-emblem">
               <i />
               <i />
               <i />
               <i />
             </span>
-          ) : (
+          </div>
+        ) : variant === "math" ? (
+          <div className="path-emblem" aria-hidden="true">
+            <span className="path-emblem-ring" />
             <span className="math-emblem">∑</span>
-          )}
-        </div>
+          </div>
+        ) : null}
         <h3>{title}</h3>
         <p>{description}</p>
         <a className="path-link focus-ring" href={href}>
+          <span className="path-link-orb" aria-hidden="true" />
           {cta}
           <ArrowLeft size={19} strokeWidth={1.7} aria-hidden="true" />
         </a>

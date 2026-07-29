@@ -30,7 +30,7 @@ test("server-renders the Persian landing page", async () => {
   const html = await response.text();
   assert.match(html, /<html[^>]*lang="fa"[^>]*dir="rtl"/i);
   assert.match(html, /رضا شکورزاد/);
-  assert.match(html, /مسیر درستِ/);
+  assert.match(html, /مسیر واقعی/);
   assert.match(html, /هوش مصنوعی و ریاضی/);
   assert.match(html, /از همین‌جا شروع می‌شود/);
   assert.match(html, /مسیر یادگیری خودت را انتخاب کن/);
